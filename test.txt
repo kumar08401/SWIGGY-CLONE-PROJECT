@@ -4,28 +4,28 @@ pipeline {
     stages {
         stage('Fetch Code') {
             steps {
-                git <your-github-repository>
+                git branch: 'main', changelog: false, credentialsId: 'github', poll: false, url: 'https://github.com/kumar08401/SWIGGY-CLONE-PROJECT.git'
             }
         }
         stage('Code Analysis') {
             environment {
-                scannerHome = tool 'Sonar'
+                scannerHome = tool 'sonar'
             }
             steps {
                 script {
-                    withSonarQubeEnv('Sonar') {
+                    withSonarQubeEnv('sonar') {
                         sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=<project-key> \
-                            -Dsonar.projectName=<project-name> \
-                            -Dsonar.projectVersion=<project-version> \
-                            -Dsonar.sources=<project-path>"
+                            -Dsonar.projectKey=swiggy \
+                            -Dsonar.projectName=swiggy \
+                            -Dsonar.sources=src"
+                            
                     }
                 }
             }
         }
         stage("SonarQube Quality Gate Check") {
             steps {
-                script {
+                /*script {
                 def qualityGate = waitForQualityGate()
                     
                     if (qualityGate.status != 'OK') {
@@ -36,7 +36,9 @@ pipeline {
                         echo "${qualityGate.status}"
                         echo "SonarQube Quality Gates Passed"
                     }
-                }
+                }*/
+                
+                waitForQualityGate abortPipeline = true
             }
         }
     }
