@@ -15,7 +15,7 @@ pipeline{
     }
     stage("Git checkout"){
       steps{
-        git branch: 'main', url:'https://github.com/Yatingambhir85/SWIGGY-CLONE-PROJECT'
+        git branch: 'main', url:'https://github.com/kumar08401/SWIGGY-CLONE-PROJECT.git'
       }
     }
     stage("Static Code Analysis"){
