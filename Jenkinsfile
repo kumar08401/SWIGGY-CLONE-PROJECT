@@ -17,7 +17,7 @@ pipeline{
         git branch: 'main', url:'https://github.com/kumar08401/SWIGGY-CLONE-PROJECT.git'
       }
     }
-    stage("Static Code Analysi"){
+    stage("Static Code Analys"){
       steps{
         withSonarQubeEnv('sonar-server'){
           sh ' $SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=swiggy-clone-cicd -Dsonar.projectKey=swiggy-clone-cicd '
