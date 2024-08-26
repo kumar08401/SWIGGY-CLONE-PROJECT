@@ -8,10 +8,6 @@ pipeline{
     SONAR_HOME=tool 'sonar-scanner'
   }
   stages{
-    stage("Clean Workspace"){
-      steps{
-        cleanWs()
-      }    }
     stage("Git checkout"){
       steps{
         git branch: 'main', url:'https://github.com/kumar08401/SWIGGY-CLONE-PROJECT.git'
